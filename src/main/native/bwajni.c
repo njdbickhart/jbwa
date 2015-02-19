@@ -185,6 +185,7 @@ JNIEXPORT jobjectArray JNICALL QUALIFIEDMETHOD(BwaMem_align2)(
 	bwaidx_t* idx= _getBwaIndex(env,bwaIndex);	
 	
   	opt->flag |= MEM_F_PE;//PROBLEM FOR SHARED LIB HERE
+        opt->n_threads = 1; // Making this single threaded for now. If the BWA index is not thread-safe, I may change this to allow for native threading
   	if(ks1==NULL) return NULL;
   	if(ks2==NULL) return NULL;
   	
@@ -259,7 +260,7 @@ JNIEXPORT jobjectArray JNICALL QUALIFIEDMETHOD(BwaMem_align2)(
 			}
 		}
 	
-	mem_process_seqs(opt, idx->bwt, idx->bns, idx->pac, numPairs*2, seqs, 0);
+	mem_process_seqs(opt, idx->bwt, idx->bns, idx->pac, 0, numPairs*2, seqs, NULL);
 	
 	samRetArray = (jobjectArray)(*env)->NewObjectArray(env, (numPairs*2 ),  
          	(*env)->FindClass(env,"java/lang/String"),  

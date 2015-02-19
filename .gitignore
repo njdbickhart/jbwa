@@ -4,5 +4,5 @@
 *~
 *.class
 src/main/native/bwajni.h
-make.properties
 src/main/java/com/github/lindenb/jbwa/ws/server/jaxws
+/nbproject/private/

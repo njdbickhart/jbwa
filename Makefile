@@ -63,7 +63,7 @@ ${native.dir}/libbwajni.so : ${native.dir}/bwajni.o ${native.dir}/libbwa2.a
 
 #compile the JNI bindings
 ${native.dir}/bwajni.o: ${native.dir}/bwajni.c ${native.dir}/bwajni.h
-	$(CC) -c $(CFLAGS) -o $@ $(CFLAGS) -fPIC  -I/java/include -I/java/include/solaris  -I $(BWA.dir) $<
+	$(CC) -c $(CFLAGS) -o $@ $(CFLAGS) -fPIC  -I $(JAVA.inc) -I $(JAVA.plat.inc)  -I $(BWA.dir) $<
 
 #libbwa must be recompiled with fPIC to create a dynamic library.
 ${native.dir}/libbwa2.a:  $(foreach C,${BWAOBJS}, ${BWA.dir}/$(patsubst %.o,%.c,${C}) )

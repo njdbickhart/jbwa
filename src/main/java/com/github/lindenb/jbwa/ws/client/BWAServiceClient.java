@@ -1,4 +1,7 @@
 package com.github.lindenb.jbwa.ws.client;
+import com.github.lindenb.jbwa.ws.server.Alignment;
+import com.github.lindenb.jbwa.ws.server.BWAService;
+import com.github.lindenb.jbwa.ws.server.BWAServiceImpl;
 import java.util.zip.GZIPInputStream;
 import java.util.regex.Pattern;
 import javax.xml.bind.*;
@@ -87,7 +90,7 @@ public class BWAServiceClient
 				}
 			++optind;
 			}
-		this.bwaService=new BWAServiceImplService().getBWAServiceImplPort();
+		this.bwaService=new BWAServiceImpl();
 		JAXBContext jaxbContext = JAXBContext.newInstance("com.github.lindenb.jbwa.ws.client");
 		this.marshaller = jaxbContext.createMarshaller();
 		this.marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
